@@ -5,8 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="src/styles/reset.css">
+    <link rel="stylesheet" href="src/styles/style.css">
   </head>
   <body>
-    여기에 기본 html 작성
+    <header>
+      <div>
+        <img src="src/assets/logo.png">
+      </div>
+      <div class="search">
+        <input id="query">
+        <button id="button-search">
+          <img src="src/assets/search_button.png">
+        </button>
+      </div>
+    </header>
+    <div>
+      <h2>지금 인기있는 영화</h2>
+      <ul>
+        <li class="movie">
+          <img src="src/assets/logo.png">
+          <span>제목</span>
+          <span>평점</span>
+        </li>
+      </ul>
+    </div>
   </body>
 </html>
