@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const DotEnv = require("dotenv-webpack").config();
+const DotEnv = require("dotenv-webpack");
 
 module.exports = {
   entry: "./src/index.js",
