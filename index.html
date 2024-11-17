@@ -4,34 +4,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="src/styles/reset.css">
-    <link rel="stylesheet" href="src/styles/style.css">
+    <title>영화 목록</title>
   </head>
   <body>
     <header>
       <div>
         <a href="index.html">
-          <img src="src/assets/logo.png">
+          <img class="img-logo">
         </a>
       </div>
       <div class="search">
         <input id="query">
         <button id="button-search">
-          <img src="src/assets/search_button.png">
+          <img class="img-search">
         </button>
       </div>
     </header>
     <div class="main-contents">
       <h2>지금 인기있는 영화</h2>
-      <ul>
-        <li class="movie">
-          <img src="src/assets/logo.png">
-          <span>제목</span>
-          <span>평점</span>
-        </li>
+      <ul class="list">
+        <!-- 여기에 리스트 추가 -->
       </ul>
       <button id="button-next">더보기</button>
     </div>
   </body>
+  <script src="src/index.js"></script>
 </html>
