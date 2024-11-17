@@ -1,9 +1,9 @@
 import { IMAGE_URL } from "./constants";
 import img_star from './assets/star.svg';
 
-const add_list = (res) => {
+export const addList = (res) => {
+  const target = document.querySelector('.list');
   res.forEach(movie => {
-    const target = document.querySelector('.list');
     const li = document.createElement('li');
     const poster = document.createElement('img');
     poster.src = `${IMAGE_URL}${movie.poster_path}`;
@@ -25,4 +25,7 @@ const add_list = (res) => {
   });
 }
 
-export default add_list;
+export const removeList = () => {
+  const target = document.querySelector('.list');
+  target.replaceChildren();
+}
