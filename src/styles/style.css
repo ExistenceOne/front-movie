@@ -66,6 +66,12 @@ header {
     .main-contents {
         width: 460px;
     }
+    .search {
+        width: 32px;
+    }
+    .search > input {
+        display: none;
+    }
 }
 
 .main-contents > h2 {

@@ -25,6 +25,9 @@ export const addList = (res) => {
     lists.push(li);
   });
   refreshList();
+  if (res.length < 20){
+    document.querySelector('#button-next-search').style.display = 'none';
+  }
 }
 
 export const removeList = () => {
@@ -37,4 +40,10 @@ export const refreshList = () => {
   lists.forEach(list => {
     target.appendChild(list);
   });
+  if (lists.length == 0){
+    const label = document.createElement('span');
+    label.textContent = "🥲 검색 결과가 없네요";
+    label.style.fontSize = '24px';
+    target.appendChild(label);
+  }
 }
