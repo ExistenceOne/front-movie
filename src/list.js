@@ -4,8 +4,8 @@ import img_star from './assets/star.svg';
 const lists = [];
 const target = document.querySelector('.list');
 
-export const addList = (res) => {
-  res.forEach(movie => {
+export const addList = (data) => {
+  data.results.forEach(movie => {
     const li = document.createElement('li');
     const poster = document.createElement('img');
     poster.src = `${IMAGE_URL}${movie.poster_path}`;
@@ -25,9 +25,8 @@ export const addList = (res) => {
     lists.push(li);
   });
   refreshList();
-  if (res.length < 20){
+  if (data.total_pages == data.page)
     document.querySelector('#button-next-search').style.display = 'none';
-  }
 }
 
 export const removeList = () => {

@@ -21,7 +21,7 @@ let page = 1;
 
 getPopularMovies(page).then((data) => {
   console.log(data);
-  addList(data.results);
+  addList(data);
 });
 
 function search(){
@@ -32,27 +32,20 @@ function search(){
   page = 1;
   removeList();
   searchMovies(value, page).then((data => {
-    addList(data.results);
+    console.log(data);
+    addList(data);
   }));
   element_button_next.style.display = 'none';
   element_button_next_search.style.display = 'block';
 }
 
 function next_popular(){
-  getPopularMovies(++page).then((data => {
-    if (!addList(data.results)) {
-      element_button_next.display = 'none';
-    }
-  }))
+  getPopularMovies(++page).then((data => addList(data)));
 }
 
 function next_search(){
   const value = element_query.value;
-  searchMovies(value, ++page).then((data => {
-    if (!addList(data.results)) {
-      element_button_next.display = 'none';
-    }
-  }))
+  searchMovies(value, ++page).then((data => addList(data)));
 }
 
 element_button_next.addEventListener('click', next_popular);
