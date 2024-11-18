@@ -1,7 +1,8 @@
 import "./styles/reset.css";
 import "./styles/style.css";
 
-import { getPopularMovies, searchMovies } from "./apis/getMovies";
+import getPopularMovies from "./apis/getPopularMovies.ts";
+import searchMovies from "./apis/searchMovies.ts";
 import { addList, removeList } from "./list";
 
 import img_logo from './assets/logo.png';
