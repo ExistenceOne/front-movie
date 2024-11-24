@@ -3,7 +3,7 @@ import type { MovieAPIResponse } from "../types/movie";
 
 const API_KEY = process.env.API_KEY;
 
-export const searchMovies = async (query: string, page: number = 1) => {
+export const getQueryMovies = async (query: string, page: number = 1) => {
     const response = await fetch(`${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}&language=ko-KR&page=${page}`);
 
     if (response.ok) {
@@ -15,4 +15,4 @@ export const searchMovies = async (query: string, page: number = 1) => {
     }
 };
 
-export default searchMovies;
+export default getQueryMovies;
