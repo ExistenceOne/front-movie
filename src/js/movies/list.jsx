@@ -1,5 +1,4 @@
 import { IMAGE_URL } from "../../constants";
-import img_star from '../../assets/star.svg';
 import { createDom, selectDom } from "../dom";
 
 const lists = [];
@@ -20,7 +19,7 @@ export const addList = (data) => {
     rate.innerText = movie.vote_average.toFixed(1);
 
     const star = createDom('img');
-    star.src = img_star;
+    star.src = 'assets/star.svg';
     star.style.translate = '20% 20%';
 
     li.appendChild(poster);

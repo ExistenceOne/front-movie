@@ -1,0 +1,30 @@
+.main-contents {
+  margin: auto;
+  width: 920px;
+  padding: 32px 0 32px 0;
+}
+
+@media (max-width: 1000px){
+  .main-contents {
+      width: 690px;
+  }
+}
+
+@media (max-width: 770px){
+  .main-contents {
+      width: 460px;
+  }
+  .search {
+      width: 32px;
+  }
+  .search > input {
+      display: none;
+  }
+}
+
+.main-contents > h2 {
+  font-size: 34px;
+  font-weight: 600;
+  margin: 16px 0 64px 0;
+}
+
