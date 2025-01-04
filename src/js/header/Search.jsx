@@ -1,16 +1,14 @@
 import React, { useState } from "react";
+import { useSharedState } from "../state";
 
 import { selectDom } from "../dom";
 import { addList, removeList } from '../movies/list';
 import getQueryMovies from '../../apis/getQueryMovies';
 
-import { useSharedState } from "../state";
-
 import "../../styles/Search.css";
 
 function Search(){
   const { currentPage, setCurrentPage } = useSharedState();
-
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e) => {
@@ -33,7 +31,6 @@ function Search(){
     <div className="search">
       <input
         value={inputValue}
-        //ref={inputRef}
         onChange={handleInputChange}
       />
       <button onClick={searchMovies}>

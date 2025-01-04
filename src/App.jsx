@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { createContext } from 'react'
 import Header from './js/header/Header'
 import Movies from './js/movies/Movies'
 import './styles/reset.css'
 
-function App() {
+export const pageContext = createContext(0);
+export default function App() {
   return (
     <>
       <Header/>
@@ -11,5 +12,3 @@ function App() {
     </>
   )
 }
-
-export default App

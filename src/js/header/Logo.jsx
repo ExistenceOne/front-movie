@@ -1,4 +1,4 @@
-function Logo() {
+export default function Logo() {
   return (
     <>
       <a href="index.html">
@@ -7,5 +7,3 @@ function Logo() {
     </>
   )
 }
-
-export default Logo;
