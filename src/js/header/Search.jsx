@@ -6,14 +6,11 @@ import { addList, removeList } from '../movies/list';
 import getQueryMovies from '../../apis/getQueryMovies';
 
 import "../../styles/header/Search.css";
+import useInput from "../hooks/useInput";
 
 function Search(){
   const { currentPage, setCurrentPage } = useSharedState();
-  const [inputValue, setInputValue] = useState("");
-
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  }
+  const { value: inputValue, onChange: handleInputChange } = useInput();
 
   const searchMovies = () => {
     setCurrentPage(0);
