@@ -1,12 +1,12 @@
 import Logo from './Logo.jsx';
 import Search from './Search.jsx';
-import '../../styles/Header.css';
+import '../../styles/header/Header.css';
 
 export default function Header() {
   return (
-    <header>
+    <div className="header">
       <Logo/>
       <Search/>
-    </header>
+    </div>
   )
 }

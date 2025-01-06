@@ -28,3 +28,10 @@
   margin: 16px 0 64px 0;
 }
 
+.movie.poster {
+  border-radius: 8px;
+}
+
+.movie > .star {
+  translate: 20% 20%;
+}

@@ -5,7 +5,7 @@ import { selectDom } from "../dom";
 import { addList, removeList } from '../movies/list';
 import getQueryMovies from '../../apis/getQueryMovies';
 
-import "../../styles/Search.css";
+import "../../styles/header/Search.css";
 
 function Search(){
   const { currentPage, setCurrentPage } = useSharedState();
