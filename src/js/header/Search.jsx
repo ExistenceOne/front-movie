@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useSharedState } from "../state";
+import React, { useContext, useState } from "react";
 
 import { selectDom } from "../dom";
 import { addList, removeList } from '../movies/list';
@@ -7,9 +6,10 @@ import getQueryMovies from '../../apis/getQueryMovies';
 
 import "../../styles/header/Search.css";
 import useInput from "../hooks/useInput";
+import { PageContext } from "../../App";
 
 function Search(){
-  const { currentPage, setCurrentPage } = useSharedState();
+  const { currentPage, setCurrentPage } = useContext(PageContext);
   const { value: inputValue, onChange: handleInputChange } = useInput();
 
   const searchMovies = () => {

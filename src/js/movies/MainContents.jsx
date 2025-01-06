@@ -1,19 +1,17 @@
-import React, { createContext, useEffect, useRef, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 
 import getPopularMovies from "../../apis/getPopularMovies";
 import getQueryMovies from "../../apis/getQueryMovies";
-//import { addList } from "./list";
-//import { inputRef } from "../header/Search.jsx";
 
 import "../../styles/movies/MainContents.css";
-import { useSharedState } from "../state.js";
 import MovieInfo from "./MovieInfo.jsx";
 import { IMAGE_URL } from "../../constants/index.ts";
+import { PageContext } from "../../App.jsx";
 
 export const InfoContext = createContext();
 
 export default function MainContents(){
-  const { currentPage, setCurrentPage } = useSharedState();
+  const { currentPage, setCurrentPage } = useContext(PageContext);
   const [movieList, setMovieList] = useState([]);
   const [infoState, setInfoState] = useState({});
   const dialogRef = useRef();
