@@ -32,6 +32,10 @@
   border-radius: 8px;
 }
 
+.movie.moreinfo {
+  display: none;
+}
+
 .movie > .star {
   translate: 20% 20%;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 import getPopularMovies from "../../apis/getPopularMovies";
 import getQueryMovies from "../../apis/getQueryMovies";
@@ -8,16 +8,22 @@ import getQueryMovies from "../../apis/getQueryMovies";
 import "../../styles/movies/MainContents.css";
 import { useSharedState } from "../state.js";
 import MovieInfo from "./MovieInfo.jsx";
-import Movie from "./Movie.jsx";
 import { IMAGE_URL } from "../../constants/index.ts";
+
+export const InfoContext = createContext();
 
 export default function MainContents(){
   const { currentPage, setCurrentPage } = useSharedState();
   const [movieList, setMovieList] = useState([]);
+  const [infoState, setInfoState] = useState(["gd", "sd"]);
 
-  const addMovie = (movie) => {
-    setMovieList([...movieList, {movie}]);
-  };
+  const showInfo = (index) => {
+    setInfoState({
+      'title': movieList[index].title,
+      'overview': movieList[index].overview,
+      'vote_average': movieList[index].vote_average.toFixed(1)
+    });
+  }
 
   const addMovies = (data) => {
     setMovieList((prevList) => [...prevList, ...data.results]);
@@ -42,11 +48,13 @@ export default function MainContents(){
   
   return (
     <div className="main-contents">
-      <MovieInfo/>
+      <InfoContext.Provider value={infoState}>
+        <MovieInfo/>
+      </InfoContext.Provider>
       <h2 id="label">지금 인기있는 영화</h2>
       <ul className="list">
         {movieList.map((movie, index) => (
-          <li key={index} className='movie' onClick={() => showInfo()}>
+          <li key={index} className='movie' onClick={() => showInfo(index)}>
             <img className='movie poster' src={`${IMAGE_URL}${movie.poster_path}`}></img>
             <p className='movie title'>{movie.title}</p>
             <p className='movie rating'>

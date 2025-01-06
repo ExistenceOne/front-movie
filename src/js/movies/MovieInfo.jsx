@@ -1,21 +1,23 @@
+import { useContext } from "react"
 import "../../styles/movies/MovieInfo.css"
+import { InfoContext } from "./MainContents";
 
 export default function MovieInfo(){
+  const info = useContext(InfoContext);
   return (
     <>
       <dialog>
         <form className="info" method="dialog">
           <div className="bar">
             <div/>
-            <p>제목</p>
+            <p>{info['title']}</p>
             <button>X</button>
           </div>
           <div className="contents">
             <img></img>
             <div>
-              <p>장르</p>
-              <p>줄거리</p>
-              <div>별점</div>
+              <p>{info['overview']}</p>
+              <div>{info['vote_average']}</div>
             </div>
           </div>
         </form>
