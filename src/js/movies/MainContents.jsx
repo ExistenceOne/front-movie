@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 
 import getPopularMovies from "../../apis/getPopularMovies";
 import getQueryMovies from "../../apis/getQueryMovies";
@@ -15,14 +15,16 @@ export const InfoContext = createContext();
 export default function MainContents(){
   const { currentPage, setCurrentPage } = useSharedState();
   const [movieList, setMovieList] = useState([]);
-  const [infoState, setInfoState] = useState(["gd", "sd"]);
-
+  const [infoState, setInfoState] = useState({});
+  const dialogRef = useRef();
   const showInfo = (index) => {
     setInfoState({
       'title': movieList[index].title,
+      'poster': movieList[index].poster_path,
       'overview': movieList[index].overview,
       'vote_average': movieList[index].vote_average.toFixed(1)
     });
+    dialogRef.current.showModal();
   }
 
   const addMovies = (data) => {
@@ -40,7 +42,6 @@ export default function MainContents(){
     setCurrentPage(currentPage+1);
     getQueryMovies(value, currentPage).then((data => (addMovies(data), console.log(data))));
   };
-
   
   useEffect(() => {
     nextPopular();
@@ -49,7 +50,7 @@ export default function MainContents(){
   return (
     <div className="main-contents">
       <InfoContext.Provider value={infoState}>
-        <MovieInfo/>
+        <MovieInfo ref={dialogRef}/>
       </InfoContext.Provider>
       <h2 id="label">지금 인기있는 영화</h2>
       <ul className="list">
@@ -57,7 +58,7 @@ export default function MainContents(){
           <li key={index} className='movie' onClick={() => showInfo(index)}>
             <img className='movie poster' src={`${IMAGE_URL}${movie.poster_path}`}></img>
             <p className='movie title'>{movie.title}</p>
-            <p className='movie rating'>
+            <p className='movie vote_average'>
               {movie.vote_average.toFixed(1)}
               <img className='star' src='assets/star.svg'></img>
             </p>

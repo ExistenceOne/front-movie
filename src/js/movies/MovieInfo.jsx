@@ -1,12 +1,13 @@
-import { useContext } from "react"
+import { forwardRef, useContext, useRef } from "react"
 import "../../styles/movies/MovieInfo.css"
 import { InfoContext } from "./MainContents";
+import { IMAGE_URL } from "../../constants";
 
-export default function MovieInfo(){
+const MovieInfo = forwardRef((props, ref) =>{
   const info = useContext(InfoContext);
   return (
     <>
-      <dialog>
+      <dialog ref={ref}>
         <form className="info" method="dialog">
           <div className="bar">
             <div/>
@@ -14,8 +15,8 @@ export default function MovieInfo(){
             <button>X</button>
           </div>
           <div className="contents">
-            <img></img>
-            <div>
+            <img className="info poster" src={`${IMAGE_URL}${info['poster']}`}></img>
+            <div className="info ">
               <p>{info['overview']}</p>
               <div>{info['vote_average']}</div>
             </div>
@@ -24,4 +25,6 @@ export default function MovieInfo(){
       </dialog>
     </>
   )
-}
+});
+
+export default MovieInfo;
