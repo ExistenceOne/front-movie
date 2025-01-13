@@ -4,7 +4,6 @@ import getPopularMovies from "../../apis/getPopularMovies";
 import getQueryMovies from "../../apis/getQueryMovies";
 
 import "../../styles/movies/MainContents.css";
-import MovieInfo from "./MovieInfo.jsx";
 import MovieList from "./MovieList.jsx";
 import { usePageStore } from "../hooks/usePageStore.js";
 import { useMovieListStore } from "../hooks/useMovieListStore.js";
@@ -15,7 +14,6 @@ export default function MainContents(){
   const increasePage = usePageStore(state => state.increase);
   const addMovieList = useMovieListStore(state => state.add);
   const inputValue = useInputStore(state => state.value);
-  const dialogRef = useRef();
 
   const nextPopular = () => {
     increasePage();
@@ -33,7 +31,6 @@ export default function MainContents(){
   
   return (
     <div className="main-contents">
-      <MovieInfo ref={dialogRef}/>
       <h2 id="label">지금 인기있는 영화</h2>
       <MovieList/>
       <button className='next' id="button-next" onClick={() => nextPopular()}>더보기</button>
