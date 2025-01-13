@@ -1,23 +1,22 @@
-import React, { useContext, useState } from "react";
-
 import { selectDom } from "../dom";
-import { addList, removeList } from '../movies/list';
+import { addMovies, resetMovies } from '../movies/MainContents';
 import getQueryMovies from '../../apis/getQueryMovies';
 
 import "../../styles/header/Search.css";
 import useInput from "../hooks/useInput";
-import { PageContext } from "../../App";
+import { usePageStore } from "../hooks/usePageStore";
 
 function Search(){
-  const { currentPage, setCurrentPage } = useContext(PageContext);
+  const page = usePageStore(state => state.page);
+  const resetPage = usePageStore(state => state.reset);
   const { value: inputValue, onChange: handleInputChange } = useInput();
 
   const searchMovies = () => {
-    setCurrentPage(0);
-    removeList();
-    getQueryMovies(inputValue, currentPage).then((data => {
+    resetPage();
+    resetMovies();
+    getQueryMovies(inputValue, page).then((data => {
       console.log(data);
-      addList(data);
+      addMovies(data);
     }));
     selectDom('#label').textContent = `"${inputValue}" 검색 결과`;
     selectDom('#button-next').style.display = 'none';
