@@ -9,6 +9,7 @@ import { IMAGE_URL } from "../../constants/index.ts";
 import { usePageStore } from "../hooks/usePageStore.js";
 import { useMovieListStore } from "../hooks/useMovieListStore.js";
 import { useInputStore } from "../hooks/useInputStore.js";
+import { useInfoStore } from "../hooks/useInfoStore.js";
 
 export const InfoContext = createContext();
 
@@ -18,10 +19,10 @@ export default function MainContents(){
   const movieList = useMovieListStore(state => state.list);
   const addMovieList = useMovieListStore(state => state.add);
   const inputValue = useInputStore(state => state.value);
-  const [infoState, setInfoState] = useState({});
+  const refreshInfo = useInfoStore(state => state.refresh);
   const dialogRef = useRef();
   const showInfo = (index) => {
-    setInfoState({
+    refreshInfo({
       'title': movieList[index].title,
       'poster': movieList[index].poster_path,
       'overview': movieList[index].overview,
@@ -46,9 +47,7 @@ export default function MainContents(){
   
   return (
     <div className="main-contents">
-      <InfoContext.Provider value={infoState}>
-        <MovieInfo ref={dialogRef}/>
-      </InfoContext.Provider>
+      <MovieInfo ref={dialogRef}/>
       <h2 id="label">지금 인기있는 영화</h2>
       <ul className="list">
         {movieList.map((movie, index) => (

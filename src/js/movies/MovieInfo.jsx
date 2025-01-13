@@ -1,10 +1,10 @@
 import { forwardRef, useContext, useRef } from "react"
 import "../../styles/movies/MovieInfo.css"
-import { InfoContext } from "./MainContents";
 import { IMAGE_URL } from "../../constants";
+import { useInfoStore } from "../hooks/useInfoStore";
 
 const MovieInfo = forwardRef((props, ref) =>{
-  const info = useContext(InfoContext);
+  const info = useInfoStore(state => state.info);
   return (
     <>
       <dialog ref={ref}>
@@ -16,7 +16,7 @@ const MovieInfo = forwardRef((props, ref) =>{
           </div>
           <div className="contents">
             <img className="info poster" src={`${IMAGE_URL}${info['poster']}`}></img>
-            <div className="info ">
+            <div className="info">
               <p>{info['overview']}</p>
               <div>{info['vote_average']}</div>
             </div>
