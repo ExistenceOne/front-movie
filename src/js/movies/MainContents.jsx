@@ -33,8 +33,16 @@ export default function MainContents(){
     <div className="main-contents">
       <h2 id="label">지금 인기있는 영화</h2>
       <MovieList/>
-      <button className='next' id="button-next" onClick={() => nextPopular()}>더보기</button>
-      <button className='next' id="button-next-search" onClick={() => nextSearch()}>더보기</button>
+      <button
+        className='next'
+        id="button-next"
+        onClick={() => nextPopular()}
+      >더보기</button>
+      <button
+        className='next'
+        id="button-next-search"
+        onClick={() => nextSearch()}
+      >더보기</button>
     </div>
   );
 }

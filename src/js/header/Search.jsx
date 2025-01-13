@@ -7,7 +7,6 @@ import { useMovieListStore } from "../hooks/useMovieListStore";
 import { useInputStore } from "../hooks/useInputStore";
 
 function Search(){
-  const page = usePageStore(state => state.page);
   const resetPage = usePageStore(state => state.reset);
   const addMovieList = useMovieListStore(state => state.add);
   const resetMovieList = useMovieListStore(state => state.reset);
