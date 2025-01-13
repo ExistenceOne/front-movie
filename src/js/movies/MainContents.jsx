@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 
 import getPopularMovies from "../../apis/getPopularMovies";
 import getQueryMovies from "../../apis/getQueryMovies";
@@ -17,12 +17,16 @@ export default function MainContents(){
 
   const nextPopular = () => {
     increasePage();
-    getPopularMovies(page).then((data => (addMovieList(data))));
+    getPopularMovies(page).then((
+      data => (addMovieList(data))
+    ));
   };
 
   const nextSearch = () => {
     increasePage();
-    getQueryMovies(inputValue, page).then((data => (addMovieList(data))));
+    getQueryMovies(inputValue, page).then((
+      data => (addMovieList(data))
+    ));
   };
   
   useEffect(() => {
@@ -33,16 +37,8 @@ export default function MainContents(){
     <div className="main-contents">
       <h2 id="label">지금 인기있는 영화</h2>
       <MovieList/>
-      <button
-        className='next'
-        id="button-next"
-        onClick={() => nextPopular()}
-      >더보기</button>
-      <button
-        className='next'
-        id="button-next-search"
-        onClick={() => nextSearch()}
-      >더보기</button>
+      <button className='next' id="button-next" onClick={() => nextPopular()}>더보기</button>
+      <button className='next' id="button-next-search" onClick={() => nextSearch()}>더보기</button>
     </div>
   );
 }
