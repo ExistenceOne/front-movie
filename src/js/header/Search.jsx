@@ -1,22 +1,25 @@
 import { selectDom } from "../dom";
-import { addMovies, resetMovies } from '../movies/MainContents';
 import getQueryMovies from '../../apis/getQueryMovies';
 
 import "../../styles/header/Search.css";
-import useInput from "../hooks/useInput";
 import { usePageStore } from "../hooks/usePageStore";
+import { useMovieListStore } from "../hooks/useMovieListStore";
+import { useInputStore } from "../hooks/useInputStore";
 
 function Search(){
   const page = usePageStore(state => state.page);
   const resetPage = usePageStore(state => state.reset);
-  const { value: inputValue, onChange: handleInputChange } = useInput();
+  const addMovieList = useMovieListStore(state => state.add);
+  const resetMovieList = useMovieListStore(state => state.reset);
+  const inputValue = useInputStore(state => state.value);
+  const handleInputChange = useInputStore(state => state.onChange);
 
   const searchMovies = () => {
     resetPage();
-    resetMovies();
-    getQueryMovies(inputValue, page).then((data => {
+    resetMovieList();
+    getQueryMovies(inputValue).then((data => {
       console.log(data);
-      addMovies(data);
+      addMovieList(data);
     }));
     selectDom('#label').textContent = `"${inputValue}" 검색 결과`;
     selectDom('#button-next').style.display = 'none';

@@ -7,13 +7,17 @@ import "../../styles/movies/MainContents.css";
 import MovieInfo from "./MovieInfo.jsx";
 import { IMAGE_URL } from "../../constants/index.ts";
 import { usePageStore } from "../hooks/usePageStore.js";
+import { useMovieListStore } from "../hooks/useMovieListStore.js";
+import { useInputStore } from "../hooks/useInputStore.js";
 
 export const InfoContext = createContext();
 
 export default function MainContents(){
   const page = usePageStore(state => state.page);
   const increasePage = usePageStore(state => state.increase);
-  const [movieList, setMovieList] = useState([]);
+  const movieList = useMovieListStore(state => state.list);
+  const addMovieList = useMovieListStore(state => state.add);
+  const inputValue = useInputStore(state => state.value);
   const [infoState, setInfoState] = useState({});
   const dialogRef = useRef();
   const showInfo = (index) => {
@@ -26,24 +30,14 @@ export default function MainContents(){
     dialogRef.current.showModal();
   }
 
-  const addMovies = (data) => {
-    setMovieList((prevList) => [...prevList, ...data.results]);
-    console.log(movieList);
-  }
-
-  const resetMovies = () => {
-    setMovieList();
-  }
-
   const nextPopular = () => {
     increasePage();
-    getPopularMovies(page).then((data => (addMovies(data), console.log(data))));
+    getPopularMovies(page).then((data => (addMovieList(data))));
   };
 
   const nextSearch = () => {
-    const value = inputRef.current.value;
     increasePage();
-    getQueryMovies(value, page).then((data => (addMovies(data), console.log(data))));
+    getQueryMovies(inputValue, page).then((data => (addMovieList(data))));
   };
   
   useEffect(() => {
