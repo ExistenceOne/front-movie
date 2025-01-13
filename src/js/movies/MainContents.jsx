@@ -8,10 +8,12 @@ import MovieList from "./MovieList.jsx";
 import { usePageStore } from "../hooks/usePageStore.js";
 import { useMovieListStore } from "../hooks/useMovieListStore.js";
 import { useInputStore } from "../hooks/useInputStore.js";
+import { useShallow } from "zustand/shallow";
 
 export default function MainContents(){
-  const page = usePageStore(state => state.page);
-  const increasePage = usePageStore(state => state.increase);
+  const [page, increasePage] = usePageStore(
+    useShallow((state) => [state.page, state.increase])
+  );
   const addMovieList = useMovieListStore(state => state.add);
   const inputValue = useInputStore(state => state.value);
 

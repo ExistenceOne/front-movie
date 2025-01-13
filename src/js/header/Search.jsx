@@ -5,14 +5,17 @@ import "../../styles/header/Search.css";
 import { usePageStore } from "../hooks/usePageStore";
 import { useMovieListStore } from "../hooks/useMovieListStore";
 import { useInputStore } from "../hooks/useInputStore";
+import { useShallow } from "zustand/shallow";
 
 function Search(){
   const resetPage = usePageStore(state => state.reset);
-  const addMovieList = useMovieListStore(state => state.add);
-  const resetMovieList = useMovieListStore(state => state.reset);
-  const inputValue = useInputStore(state => state.value);
-  const handleInputChange = useInputStore(state => state.onChange);
-
+  const [addMovieList, resetMovieList] = useMovieListStore(
+    useShallow((state) => [state.add, state.reset])
+  );
+  const [inputValue, handleInputChange] = useInputStore(
+    useShallow((state) => [state.value, state.onChange])
+  );
+  
   const searchMovies = () => {
     resetPage();
     resetMovieList();
